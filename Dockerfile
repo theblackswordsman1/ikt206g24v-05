@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
@@ -7,10 +7,10 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["ikt206g24v-05/ikt206g24v-05.csproj", "ikt206g24v-05/"]
-RUN dotnet restore "ikt206g24v-05/ikt206g24v-05.csproj"
+COPY ["ikt206g24v-05.csproj", "./"]
+RUN dotnet restore "ikt206g24v-05.csproj"
 COPY . .
-WORKDIR "/src/ikt206g24v-05"
+WORKDIR "./"
 RUN dotnet build "ikt206g24v-05.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
