@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: ikt206g24v-05/Dockerfile
+    ports:
+      - "8080:80"
